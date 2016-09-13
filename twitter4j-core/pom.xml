@@ -3,7 +3,7 @@
 
     <groupId>com.thesocialstation</groupId>
     <artifactId>twitter4j-core</artifactId>
-    <version>4.0.4</version>
+    <version>4.0.4.1</version>
     <packaging>jar</packaging>
     <name>twitter4j-core</name>
     <description>A Java library for the Twitter API</description>
