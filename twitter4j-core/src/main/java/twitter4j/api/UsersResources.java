@@ -140,6 +140,7 @@ public interface UsersResources {
      * @throws TwitterException when Twitter service or network is unavailable
      * @see <a href="https://dev.twitter.com/docs/api/1.1/post/account/update_profile_colors">POST account/update_profile_colors | Twitter Developers</a>
      * @since Twitter4J 2.0.0
+     * @deprecated Since Twitter4J 4.0.5
      */
     User updateProfileColors(String profileBackgroundColor, String profileTextColor, String profileLinkColor, String profileSidebarFillColor, String profileSidebarBorderColor)
         throws TwitterException;
@@ -342,7 +343,7 @@ public interface UsersResources {
      * Return up to 100 users worth of extended information, specified by either ID, screen name, or combination of the two. The author's most recent status (if the authenticating user has permission) will be returned inline.
      * <br>This method calls https://api.twitter.com/1.1/users/lookup.json
      *
-     * @param ids Specifies the screen names of the users to return.
+     * @param ids Specifies the IDs of the users to return.
      * @return users
      * @throws TwitterException when Twitter service or network is unavailable
      * @see <a href="https://dev.twitter.com/docs/api/1.1/get/users/lookup">GET users/lookup | Twitter Developers</a>

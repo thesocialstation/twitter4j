@@ -12,7 +12,7 @@ twitter4j-examples - examples
 twitter4j-media-support - media API support
 twitter4j-async - Async API support : depending on twitter4j-core
 twitter4j-stream - Streaming API support : depending on twitter4j-core and twitter4j-async
-twitter4j-spdy - SPDY / HTTP2.0 support : adds SPDY / HTTP2.0 support, boosts Twitter4J performance, reduce packets, save the earth
+twitter4j-http2-support - HTTP/2 support : adds HTTP/2 support, boosts Twitter4J performance, reduce packets, save the earth
 
 Contributors
 ------------
@@ -45,6 +45,7 @@ Gabriel Zanetti @pupi1985
 George Ludwig <georgeludwig at gmail.com> @georgeludwig
 Gonçalo Silva <goncalossilva at gmail.com> @goncalossilva
 Hemant Kumar <hemant.singh13 at gmail.com> @hemantsingh1309
+Hendy Irawan <hendy@hendyirawan.com>
 Hiroaki Takeuchi <takke30 at gmail.com> @takke
 Hiroki Takemoto <pompopo at gmail.com> @pompopo
 Hiroshi Sugimori <mamamadata at gmail.com> @ham1975
@@ -94,6 +95,7 @@ Rui Silva
 Sam Pullara <sam at sampullara.com> @sampullara
 Sdk0815 <developer at terumode.net> @Sdk0815
 Shane Gibson <shane.a.gibson at gmail.com> @shaneagibson
+Shintaro Watanabe <shintaro.watanabe1226@gmail.com> @shin_taro_1226
 Simone Aiello <aiello.simone103 at gmail.com> @saiello103
 Steve Lhomme <slhomme at matroska.org> @robux4
 Steven Liu <steven at twitter.com> @steven
@@ -113,5 +115,6 @@ William Morgan <william at twitter.com> @wm
 William O'Hanley <william at wohanley.com> @wohanley
 William Vanderhoef <william.vanderhoef at gmail.com> @thePoofy
 withgod <noname at withgod.jp> @withgod
+Yuichiro Kawano <tresener.yu1ro at gmail.com> @tresener_yu1ro
 Yusuke Yamamoto <yusuke at mac.com> @yusuke
 Yuto Uehara <mumei.himazin at gmail.com> @mumei_himazin

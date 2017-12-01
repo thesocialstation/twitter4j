@@ -115,5 +115,23 @@ public interface Configuration extends AuthorizationConfiguration, java.io.Seria
 
     boolean isTrimUserEnabled();
 
+    boolean isIncludeExtAltTextEnabled();
+
+    boolean isTweetModeExtended();
+
     boolean isDaemonEnabled();
+
+    boolean isIncludeEmailEnabled();
+
+    String getStreamThreadName();
+
+    /**
+     * Timeout (in seconds) for chunked upload finalization.
+     */
+    int getChunkedUploadFinalizeTimeout();
+
+    /**
+     * Size of segments (in bytes) when performing a chunked upload
+     */
+    int getChunkedUploadSegmentSize();
 }
