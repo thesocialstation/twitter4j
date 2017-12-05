@@ -21,7 +21,7 @@
         <developerConnection>scm:https://github.com/yusuke/twitter4j.git
         </developerConnection>
 
-    <tag>4.0.6.1</tag>
+    <tag>4.0.6.2</tag>
   </scm>
     <developers>
         <developer>
