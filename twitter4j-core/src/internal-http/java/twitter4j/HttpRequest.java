@@ -39,6 +39,8 @@ public final class HttpRequest implements java.io.Serializable {
 
     private final Map<String, String> requestHeaders;
 
+    private final String body;
+
 
     private static final HttpParameter[] NULL_PARAMETERS = new HttpParameter[0];
 
@@ -51,6 +53,18 @@ public final class HttpRequest implements java.io.Serializable {
      */
     public HttpRequest(RequestMethod method, String url, HttpParameter[] parameters
             , Authorization authorization, Map<String, String> requestHeaders) {
+        this(method, url, parameters, authorization, requestHeaders, null);
+    }
+
+    /**
+     * @param method         Specifies the HTTP method
+     * @param url            the request to request
+     * @param parameters     parameters
+     * @param authorization  Authentication implementation. Currently BasicAuthentication, OAuthAuthentication and NullAuthentication are supported.
+     * @param requestHeaders request headers
+     * @param body           post body
+     */
+    public HttpRequest(RequestMethod method, String url, HttpParameter[] parameters, Authorization authorization, Map<String, String> requestHeaders, String body) {
         this.method = method;
         if (method != RequestMethod.POST && parameters != null && parameters.length != 0) {
             this.url = url + "?" + HttpParameter.encodeParameters(parameters);
@@ -61,6 +75,7 @@ public final class HttpRequest implements java.io.Serializable {
         }
         this.authorization = authorization;
         this.requestHeaders = requestHeaders;
+        this.body = body;
     }
 
     public RequestMethod getMethod() {
@@ -83,6 +98,10 @@ public final class HttpRequest implements java.io.Serializable {
         return requestHeaders;
     }
 
+    public String getBody() {
+        return body;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,6 +118,8 @@ public final class HttpRequest implements java.io.Serializable {
             return false;
         if (url != null ? !url.equals(that.url) : that.url != null)
             return false;
+        if (body != null ? !body.equals(that.body) : that.body != null)
+            return false;
 
         return true;
     }
@@ -110,6 +131,7 @@ public final class HttpRequest implements java.io.Serializable {
         result = 31 * result + (parameters != null ? Arrays.hashCode(parameters) : 0);
         result = 31 * result + (authorization != null ? authorization.hashCode() : 0);
         result = 31 * result + (requestHeaders != null ? requestHeaders.hashCode() : 0);
+        result = 31 * result + (body != null ? body.hashCode() : 0);
         return result;
     }
 
@@ -121,6 +143,7 @@ public final class HttpRequest implements java.io.Serializable {
                 ", postParams=" + (parameters == null ? null : Arrays.asList(parameters)) +
                 ", authentication=" + authorization +
                 ", requestHeaders=" + requestHeaders +
+                ", body=" + body +
                 '}';
     }
 }

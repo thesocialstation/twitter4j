@@ -448,6 +448,40 @@ class TwitterImpl extends TwitterBaseImpl implements Twitter {
         return get(url).asStream();
     }
 
+    /* Direct Message Events Resources */
+
+    @Override
+    public ResponseList<DirectMessageEvent> getDirectMessageEvents() throws TwitterException {
+        return factory.createDirectMessageEventList(get(conf.getRestBaseURL() + "direct_messages/events/list.json"));
+    }
+
+    @Override
+    public DirectMessageEvent sendDirectMessageEvent(long userId, String text) throws TwitterException {
+        try {
+            JSONObject target = new JSONObject();
+            target.put("recipient_id", userId);
+
+            JSONObject messageData = new JSONObject();
+            messageData.put("text", text);
+
+            JSONObject messageCreate = new JSONObject();
+            messageCreate.put("target", target);
+            messageCreate.put("message_data", messageData);
+
+            JSONObject event = new JSONObject();
+            event.put("type", "message_create");
+            event.put("message_create", messageCreate);
+
+            JSONObject request = new JSONObject();
+            request.put("event", event);
+
+            String body = request.toString();
+            return factory.createDirectMessageEvent(post(conf.getRestBaseURL() + "direct_messages/events/new.json", body));
+        } catch ( JSONException jsone ) {
+            throw new TwitterException(jsone);
+        }
+    }
+
     /* Friends & Followers Resources */
 
     @Override
@@ -1831,6 +1865,11 @@ class TwitterImpl extends TwitterBaseImpl implements Twitter {
     }
 
     @Override
+    public DirectMessageEventsResources directMessageEvents() {
+        return this;
+    }
+
+    @Override
     public FriendsFollowersResources friendsFollowers() {
         return this;
     }
@@ -1951,6 +1990,24 @@ class TwitterImpl extends TwitterBaseImpl implements Twitter {
             long start = System.currentTimeMillis();
             try {
                 response = http.post(url, mergeImplicitParams(params), auth, this);
+            } finally {
+                long elapsedTime = System.currentTimeMillis() - start;
+                TwitterAPIMonitor.getInstance().methodCalled(url, elapsedTime, isOk(response));
+            }
+            return response;
+        }
+    }
+
+    private HttpResponse post(String url, String body) throws TwitterException {
+        ensureAuthorizationEnabled();
+        if (!conf.isMBeanEnabled()) {
+            return http.post(url, new HttpParameter[0], body, auth, this);
+        } else {
+            // intercept HTTP call for monitoring purposes
+            HttpResponse response = null;
+            long start = System.currentTimeMillis();
+            try {
+                response = http.post(url, new HttpParameter[0], body, auth, this);
             } finally {
                 long elapsedTime = System.currentTimeMillis() - start;
                 TwitterAPIMonitor.getInstance().methodCalled(url, elapsedTime, isOk(response));

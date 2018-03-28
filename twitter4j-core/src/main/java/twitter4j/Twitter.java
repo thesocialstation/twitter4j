@@ -31,6 +31,7 @@ public interface Twitter extends java.io.Serializable,
     TweetsResources,
     SearchResource,
     DirectMessagesResources,
+    DirectMessageEventsResources,
     FriendsFollowersResources,
     UsersResources,
     SuggestedUsersResources,
@@ -65,6 +66,12 @@ public interface Twitter extends java.io.Serializable,
      * @since Twitter4J 3.0.4
      */
     DirectMessagesResources directMessages();
+
+    /**
+     * @return {@link DirectMessageEventsResources}
+     * @since Twitter4J 4.1.0
+     */
+    DirectMessageEventsResources directMessageEvents();
 
     /**
      * @return {@link twitter4j.api.FriendsFollowersResources}

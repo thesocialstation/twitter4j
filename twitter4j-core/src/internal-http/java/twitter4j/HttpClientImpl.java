@@ -124,7 +124,12 @@ class HttpClientImpl extends HttpClientBase implements HttpResponseCode, java.io
                             }
                             write(out, boundary + "--\r\n");
                             write(out, "\r\n");
-
+                        } else if (req.getBody() != null) {
+                            con.setRequestProperty("Content-Type", "application/json");
+                            byte[] bytes = req.getBody().getBytes();
+                            con.setDoOutput(true);
+                            os = con.getOutputStream();
+                            os.write(bytes);
                         } else {
                             con.setRequestProperty("Content-Type",
                                     "application/x-www-form-urlencoded");

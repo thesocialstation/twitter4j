@@ -43,6 +43,9 @@ public interface HttpClient {
     HttpResponse post(String url, HttpParameter[] parameters
             , Authorization authorization, HttpResponseListener listener) throws TwitterException;
 
+    HttpResponse post(String url, HttpParameter[] parameters, String body
+            , Authorization authorization, HttpResponseListener listener) throws TwitterException;
+
     HttpResponse post(String url) throws TwitterException;
 
     HttpResponse delete(String url, HttpParameter[] parameters
